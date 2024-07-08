@@ -31,7 +31,7 @@ def authenticate():
             token.write(creds.to_json())
     return creds
 
-def create_google_doc(drive_service, folder_id = None):
+def create_google_doc(drive_service, folder_id = '1fB7grvQqzyctlTpLtYnyb7jSRz5nT6n9'):
     file_metadata = {
         'name': 'Hello World Document',
         'mimeType': 'application/vnd.google-apps.document',
@@ -41,7 +41,7 @@ def create_google_doc(drive_service, folder_id = None):
     document_id = file.get('id')
     return document_id
 
-def copy_template(drive_service, template_id, folder_id= None):
+def copy_template(drive_service, template_id, folder_id= '1fB7grvQqzyctlTpLtYnyb7jSRz5nT6n9'):
     copied_file_metadata = {
         'name': 'Copied Template Document',
         'parents': [folder_id] if folder_id else []
@@ -85,7 +85,7 @@ def main():
     drive_service = build('drive', 'v3', credentials=creds)
     docs_service = build('docs', 'v1', credentials=creds)
     
-    template_id = ''
+    template_id = '1_S-Hfsu-pmjUAWBoBI2GFibHhmIr5GPKz_flGmTElXw'
     
     copied_document_id = copy_template(drive_service, template_id)
     replace_placeholder(docs_service, copied_document_id, '{{learnings}}', 'Important Lessons!')
